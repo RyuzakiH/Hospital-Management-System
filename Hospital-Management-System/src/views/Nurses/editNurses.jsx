@@ -37,7 +37,9 @@ class EditNurse extends Component {
 
     var data = {
       id: this.state.nurse.id,
-      name: event.target.elements["name"].value
+      name: event.target.elements["name"].value,
+      address: event.target.elements["address"].value,
+      mobile: event.target.elements["mobile"].value
     };
 
     console.log(data);
@@ -67,6 +69,34 @@ class EditNurse extends Component {
                         placeholder="Name"
                         required
                         defaultValue={this.state.nurse.name}
+                      />
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="address">Address</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input
+                        type="text"
+                        id="address"
+                        placeholder="Address"
+                        required
+                        defaultValue={this.state.nurse.adress}
+                      />
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="mobile">Mobile</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input
+                        type="text"
+                        id="mobile"
+                        placeholder="Mobile"
+                        required
+                        defaultValue={this.state.nurse.mobile}
                       />
                     </Col>
                   </FormGroup>

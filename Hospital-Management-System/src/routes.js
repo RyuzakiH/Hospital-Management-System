@@ -64,7 +64,7 @@ const routes = [
   { path: "/nurses", exact: true, name: "Nurses", component: nurses },
   { path: "/nurses/add", exact: true, name: "Add Nurse", component: addNurse },
   {
-    path: "/doctors/edit/:id",
+    path: "/nurses/edit/:id",
     exact: true,
     name: "Edit Nurse",
     component: EditNurse
