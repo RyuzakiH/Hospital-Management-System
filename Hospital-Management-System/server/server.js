@@ -4,20 +4,20 @@ var cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
-const Doctor = require("./Doctors");
+const Doctor = require("./doctor");
+const Nurse = require("./nurse");
+
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
 
 // this is our MongoDB database
-const dbRoute = "mongodb://jelo:a9bc839993@ds151382.mlab.com:51382/jelotest";
+const dbRoute =
+  "mongodb+srv://admin:admin@cluster0-yual5.mongodb.net/test?retryWrites=true";
 
 // connects our back end code with the database
-mongoose.connect(
-  dbRoute,
-  { useNewUrlParser: true }
-);
+mongoose.connect(dbRoute, { useNewUrlParser: true });
 
 let db = mongoose.connection;
 
@@ -34,19 +34,37 @@ app.use(logger("dev"));
 
 // this is our get method
 // this method fetches all available data in our database
+router.get("/patients", (req, res) => {
+  Data.find((err, data) => {
+    // if (err) return res.json({ success: false, error: err });
+    return res.json(data);
+  });
+});
+
+// this is our get method
+// this method fetches all available data in our database
+router.get("/doctors", (req, res) => {
+  Doctor.find((err, data) => {
+    //if (err) return res.json({ success: false, error: err });
+    return res.json(data);
+  });
+});
+
+// this is our get method
+// this method fetches all available data in our database
+router.get("/nurses", (req, res) => {
+  Nurse.find((err, nurse) => {
+    //if (err) return res.json({ success: false, error: err });
+    return res.json(nurse);
+  });
+});
+
+// this is our get method
+// this method fetches all available data in our database
 router.get("/getData", (req, res) => {
   Data.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
-  });
-});
-
-// this is our Doctors get method
-// this method fetches all available data in our database
-router.get("/getDoctors", (req, res) => {
-  Doctor.find((err, doctors) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json(doctors);
   });
 });
 
@@ -55,21 +73,6 @@ router.get("/getDoctors", (req, res) => {
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
   Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
-
-// this is our Doctor update method
-// this method overwrites existing Doctor in our database
-router.put("/updateDoctor/:id", (req, res) => {
-  const  id = { id: req.params.id };
-  const update = req.body;
-
-  console.log(id);
-  console.log(update);
-
-  Doctor.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -85,12 +88,45 @@ router.delete("/deleteData", (req, res) => {
   });
 });
 
-// this is our Doctor delete method
-// this method removes existing doctor in our database
-router.delete("/deleteDoctor/:id", (req, res) => {
-  const id = { id: req.params.id };
-  Doctor.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
+// this is our create methid
+// this method adds new data in our database
+router.post("/doctors", (req, res) => {
+  let doctor = new Doctor();
+
+  const { id, name } = req.body;
+
+  // if ((!id && id !== 0) || !name) {
+  //   return res.json({
+  //     success: false,
+  //     error: "INVALID INPUTS"
+  //   });
+  // }
+  doctor.name = name;
+  doctor.id = id;
+  doctor.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+router.post("/nurses", (req, res) => {
+  let nurse = new Nurse();
+
+  const { id, name, address, mobile, gender } = req.body;
+
+  // if ((!id && id !== 0) || !name) {
+  //   return res.json({
+  //     success: false,
+  //     error: "INVALID INPUTS"
+  //   });
+  // }
+  nurse.name = name;
+  nurse.id = id;
+  nurse.address = address;
+  nurse.mobile = mobile;
+  nurse.gender = gender;
+  nurse.save(err => {
+    if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
@@ -113,29 +149,6 @@ router.post("/putData", (req, res) => {
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
-  });
-});
-
-//this is our create doctor method
-//this methode adds a new doctor in our database
-router.post("/postdoctor", (req , res) => {
-  let doctor = new Doctor();
-
-  const {id, name, phone, spec,} = req.body;
-
-  if ((!id && id !== 0))
-    return res.json({
-      success: false,
-      error: "INVALID INPUT"
-    });
-
-  doctor.id = id;
-  doctor.name = name;
-  doctor.phone = phone;
-  doctor.spec = spec;
-  doctor.save(err => {
-    if (err) return res.json({ success: false, error: err});
-    return res.json({success: true});
   });
 });
 
