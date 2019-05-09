@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 const express = require("express");
-var cors = require('cors');
+var cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
-const Doctor = require("./doctor");
-
+const Doctor = require("./Doctors");
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
@@ -33,32 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-
-
-router.get("/", (req, res) => {    
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-});
-
-
-// this is our get method
-// this method fetches all available data in our database
-router.get("/patients", (req, res) => {
-  Data.find((err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json(data);
-  });
-});
-
-// this is our get method
-// this method fetches all available data in our database
-router.get("/doctors", (req, res) => {
-  Doctor.find((err, data) => {
-    // if (err) return res.json({ success: false, error: err });
-    return res.json(data);
-  });
-});
-
 // this is our get method
 // this method fetches all available data in our database
 router.get("/getData", (req, res) => {
@@ -68,11 +41,35 @@ router.get("/getData", (req, res) => {
   });
 });
 
+// this is our Doctors get method
+// this method fetches all available data in our database
+router.get("/getDoctors", (req, res) => {
+  Doctor.find((err, doctors) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json(doctors);
+  });
+});
+
 // this is our update method
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
   Data.findOneAndUpdate(id, update, err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+// this is our Doctor update method
+// this method overwrites existing Doctor in our database
+router.put("/updateDoctor/:id", (req, res) => {
+  const  id = { id: req.params.id };
+  const update = req.body;
+
+  console.log(id);
+  console.log(update);
+
+  Doctor.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -88,24 +85,12 @@ router.delete("/deleteData", (req, res) => {
   });
 });
 
-// this is our create methid
-// this method adds new data in our database
-router.post("/doctors", (req, res) => {
-  let doctor = new Doctor();
-
-  const { id, name } = req.body;
-
-  // if ((!id && id !== 0) || !name) {
-  //   return res.json({
-  //     success: false,
-  //     error: "INVALID INPUTS"
-  //   });
-  // }
-  doctor.name = name;
-  //doctor.id = id;
-  doctor.id = 2;
-  doctor.save(err => {
-    if (err) return res.json({ success: false, error: err });
+// this is our Doctor delete method
+// this method removes existing doctor in our database
+router.delete("/deleteDoctor/:id", (req, res) => {
+  const id = { id: req.params.id };
+  Doctor.findOneAndDelete(id, err => {
+    if (err) return res.send(err);
     return res.json({ success: true });
   });
 });
@@ -128,6 +113,29 @@ router.post("/putData", (req, res) => {
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
+  });
+});
+
+//this is our create doctor method
+//this methode adds a new doctor in our database
+router.post("/postdoctor", (req , res) => {
+  let doctor = new Doctor();
+
+  const {id, name, phone, spec,} = req.body;
+
+  if ((!id && id !== 0))
+    return res.json({
+      success: false,
+      error: "INVALID INPUT"
+    });
+
+  doctor.id = id;
+  doctor.name = name;
+  doctor.phone = phone;
+  doctor.spec = spec;
+  doctor.save(err => {
+    if (err) return res.json({ success: false, error: err});
+    return res.json({success: true});
   });
 });
 
