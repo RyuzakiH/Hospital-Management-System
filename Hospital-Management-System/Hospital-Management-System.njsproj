@@ -1,0 +1,211 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>Hospital-Management-System</Name>
+    <RootNamespace>Hospital-Management-System</RootNamespace>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>46565e56-5705-469c-abbf-8581bf42443d</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server\server.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="server\data.js" />
+    <Compile Include="server\doctor.js" />
+    <Compile Include="server\patient.js" />
+    <Compile Include="server\server.js" />
+    <Compile Include="src\App.jsx" />
+    <Compile Include="src\App.test.js" />
+    <Compile Include="src\containers\DefaultLayout\DefaultAside.js" />
+    <Compile Include="src\containers\DefaultLayout\DefaultFooter.js" />
+    <Compile Include="src\containers\DefaultLayout\DefaultHeader.js" />
+    <Compile Include="src\containers\DefaultLayout\DefaultLayout.js" />
+    <Compile Include="src\containers\DefaultLayout\index.js" />
+    <Compile Include="src\containers\DefaultLayout\__tests__\DefaultAside.test.js" />
+    <Compile Include="src\containers\DefaultLayout\__tests__\DefaultFooter.test.js" />
+    <Compile Include="src\containers\DefaultLayout\__tests__\DefaultHeader.test.js" />
+    <Compile Include="src\containers\DefaultLayout\__tests__\DefaultLayout.test.js" />
+    <Compile Include="src\containers\index.js" />
+    <Compile Include="src\index.js" />
+    <Compile Include="src\polyfill.js" />
+    <Compile Include="src\registerServiceWorker.js" />
+    <Compile Include="src\routes.js" />
+    <Compile Include="src\services\DoctorsApi.jsx" />
+    <Compile Include="src\services\NursesApi.jsx" />
+    <Compile Include="src\services\PatientsApi.jsx" />
+    <Compile Include="src\services\RoomsApi.jsx" />
+    <Compile Include="src\services\UsersApi.jsx" />
+    <Compile Include="src\setupTests.js" />
+    <Compile Include="src\utils.js" />
+    <Compile Include="src\views\Dashboard\Dashboard.js" />
+    <Compile Include="src\views\Dashboard\Dashboard.test.js" />
+    <Compile Include="src\views\Doctors\AddDoctor.jsx" />
+    <Compile Include="src\views\Doctors\DeleteModal.jsx" />
+    <Compile Include="src\views\Doctors\Doctor.jsx" />
+    <Compile Include="src\views\Doctors\Doctors.jsx" />
+    <Compile Include="src\views\Doctors\EditDoctor.jsx" />
+    <Compile Include="src\views\Icons\CoreUIIcons\CoreUIIcons.js" />
+    <Compile Include="src\views\Icons\CoreUIIcons\CoreUIIcons.test.js" />
+    <Compile Include="src\views\Icons\Flags\Flags.js" />
+    <Compile Include="src\views\Icons\Flags\Flags.test.js" />
+    <Compile Include="src\views\Icons\FontAwesome\FontAwesome.js" />
+    <Compile Include="src\views\Icons\FontAwesome\FontAwesome.test.js" />
+    <Compile Include="src\views\Icons\index.js" />
+    <Compile Include="src\views\Icons\SimpleLineIcons\SimpleLineIcons.js" />
+    <Compile Include="src\views\Icons\SimpleLineIcons\SimpleLineIcons.test.js" />
+    <Compile Include="src\views\index.js" />
+    <Compile Include="src\views\Pages\index.js" />
+    <Compile Include="src\views\Pages\Login\Login.js" />
+    <Compile Include="src\views\Pages\Login\Login.test.js" />
+    <Compile Include="src\views\Pages\Page404\Page404.js" />
+    <Compile Include="src\views\Pages\Page404\Page404.test.js" />
+    <Compile Include="src\views\Pages\Page500\Page500.js" />
+    <Compile Include="src\views\Pages\Page500\Page500.test.js" />
+    <Compile Include="src\views\Pages\Register\Register.js" />
+    <Compile Include="src\views\Pages\Register\Register.test.js" />
+    <Compile Include="src\views\Patients\AddPatient.jsx" />
+    <Compile Include="src\views\Patients\DeleteModal.jsx" />
+    <Compile Include="src\views\Patients\EditPatient.jsx" />
+    <Compile Include="src\views\Patients\InputTypes.js" />
+    <Compile Include="src\views\Patients\Patient.jsx" />
+    <Compile Include="src\views\Patients\Patients.jsx" />
+    <Compile Include="src\views\Patients\PatientsTemplate.js" />
+    <Compile Include="src\views\Users\User.js" />
+    <Compile Include="src\views\Users\User.test.js" />
+    <Compile Include="src\views\Users\Users.js" />
+    <Compile Include="src\views\Users\Users.test.js" />
+    <Compile Include="src\views\Users\UsersData.js" />
+    <Compile Include="src\_nav.js" />
+    <Content Include="public\assets\.gitkeep" />
+    <Content Include="public\assets\img\avatars\1.jpg" />
+    <Content Include="public\assets\img\avatars\2.jpg" />
+    <Content Include="public\assets\img\avatars\3.jpg" />
+    <Content Include="public\assets\img\avatars\4.jpg" />
+    <Content Include="public\assets\img\avatars\5.jpg" />
+    <Content Include="public\assets\img\avatars\6.jpg" />
+    <Content Include="public\assets\img\avatars\7.jpg" />
+    <Content Include="public\assets\img\avatars\8.jpg" />
+    <Content Include="public\assets\img\favicon.png" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\index.html" />
+    <Content Include="public\manifest.json" />
+    <Content Include="server\package-lock.json" />
+    <Content Include="server\package.json" />
+    <Content Include="server\README.md" />
+    <Content Include="src\App.scss" />
+    <Content Include="src\assets\img\avatars\ezgif.com-webp-to-jpg.jpg" />
+    <Content Include="src\assets\img\brand\logo.svg" />
+    <Content Include="src\assets\img\brand\sygnet.svg" />
+    <Content Include="src\containers\DefaultLayout\package.json" />
+    <Content Include="src\index.css" />
+    <Content Include="src\scss\style.scss" />
+    <Content Include="src\scss\vendors\.gitkeep" />
+    <Content Include="src\scss\vendors\_variables.scss" />
+    <Content Include="src\scss\_custom.scss" />
+    <Content Include="src\scss\_ie-fix.scss" />
+    <Content Include="src\scss\_variables.scss" />
+    <Content Include="src\views\Dashboard\package.json" />
+    <Content Include="src\views\Icons\CoreUIIcons\package.json" />
+    <Content Include="src\views\Icons\Flags\package.json" />
+    <Content Include="src\views\Icons\FontAwesome\package.json" />
+    <Content Include="src\views\Icons\SimpleLineIcons\package.json" />
+    <Content Include="src\views\Pages\Login\package.json" />
+    <Content Include="src\views\Pages\Page404\package.json" />
+    <Content Include="src\views\Pages\Page500\package.json" />
+    <Content Include="src\views\Pages\Register\package.json" />
+    <Content Include="src\views\Users\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="public\assets\" />
+    <Folder Include="public\assets\img\" />
+    <Folder Include="public\assets\img\avatars\" />
+    <Folder Include="server\" />
+    <Folder Include="src\" />
+    <Folder Include="src\assets\" />
+    <Folder Include="src\assets\img\" />
+    <Folder Include="src\assets\img\avatars\" />
+    <Folder Include="src\assets\img\brand\" />
+    <Folder Include="src\containers\" />
+    <Folder Include="src\containers\DefaultLayout\" />
+    <Folder Include="src\containers\DefaultLayout\__tests__\" />
+    <Folder Include="src\scss\" />
+    <Folder Include="src\scss\vendors\" />
+    <Folder Include="src\services\" />
+    <Folder Include="src\views\" />
+    <Folder Include="src\views\Dashboard\" />
+    <Folder Include="src\views\Doctors\" />
+    <Folder Include="src\views\Icons\" />
+    <Folder Include="src\views\Icons\CoreUIIcons\" />
+    <Folder Include="src\views\Icons\Flags\" />
+    <Folder Include="src\views\Icons\FontAwesome\" />
+    <Folder Include="src\views\Icons\SimpleLineIcons\" />
+    <Folder Include="src\views\Pages\" />
+    <Folder Include="src\views\Pages\Login\" />
+    <Folder Include="src\views\Pages\Page404\" />
+    <Folder Include="src\views\Pages\Page500\" />
+    <Folder Include="src\views\Pages\Register\" />
+    <Folder Include="src\views\Patients\" />
+    <Folder Include="src\views\Users\" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
