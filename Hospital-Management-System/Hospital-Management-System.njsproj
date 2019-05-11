@@ -29,9 +29,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="server\data.js" />
-    <Compile Include="server\doctor.js" />
-    <Compile Include="server\patient.js" />
+    <Compile Include="server\controllers\nursesController.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="server\db.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="server\models\data.js" />
+    <Compile Include="server\models\doctor.js" />
+    <Compile Include="server\models\Doctors.js" />
+    <Compile Include="server\models\nurse.js" />
+    <Compile Include="server\models\patient.js" />
     <Compile Include="server\server.js" />
     <Compile Include="src\App.jsx" />
     <Compile Include="src\App.test.js" />
@@ -73,6 +81,11 @@
     <Compile Include="src\views\Icons\SimpleLineIcons\SimpleLineIcons.js" />
     <Compile Include="src\views\Icons\SimpleLineIcons\SimpleLineIcons.test.js" />
     <Compile Include="src\views\index.js" />
+    <Compile Include="src\views\Nurses\addNurse.jsx" />
+    <Compile Include="src\views\Nurses\DeleteModal.jsx" />
+    <Compile Include="src\views\Nurses\editNurses.jsx" />
+    <Compile Include="src\views\Nurses\nurse.jsx" />
+    <Compile Include="src\views\Nurses\nurses.jsx" />
     <Compile Include="src\views\Pages\index.js" />
     <Compile Include="src\views\Pages\Login\Login.js" />
     <Compile Include="src\views\Pages\Login\Login.test.js" />
@@ -140,6 +153,9 @@
     <Folder Include="public\assets\img\" />
     <Folder Include="public\assets\img\avatars\" />
     <Folder Include="server\" />
+    <Folder Include="server\models\" />
+    <Folder Include="server\controllers\" />
+    <Folder Include="server\views\" />
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\assets\img\" />
@@ -159,6 +175,7 @@
     <Folder Include="src\views\Icons\Flags\" />
     <Folder Include="src\views\Icons\FontAwesome\" />
     <Folder Include="src\views\Icons\SimpleLineIcons\" />
+    <Folder Include="src\views\Nurses\" />
     <Folder Include="src\views\Pages\" />
     <Folder Include="src\views\Pages\Login\" />
     <Folder Include="src\views\Pages\Page404\" />

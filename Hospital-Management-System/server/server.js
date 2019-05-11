@@ -3,34 +3,43 @@ const express = require("express");
 var cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const Data = require("./data");
-const Doctor = require("./doctor");
-const Nurse = require("./nurse");
+//const Data = require("./data");
+const Doctor = require("./models/doctor");
+const Nurse = require("./models/nurse");
+
+var db = require("./db");
 
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
 
-// this is our MongoDB database
-const dbRoute =
-  "mongodb+srv://admin:admin@cluster0-yual5.mongodb.net/test?retryWrites=true";
+//// this is our MongoDB database
+//const dbRoute =
+//  "mongodb+srv://admin:admin@cluster0-yual5.mongodb.net/test?retryWrites=true";
 
-// connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true });
+//// connects our back end code with the database
+//mongoose.connect(dbRoute, { useNewUrlParser: true });
 
-let db = mongoose.connection;
+//let db = mongoose.connection;
 
-db.once("open", () => console.log("connected to the database"));
+//db.once("open", () => console.log("connected to the database"));
 
-// checks if connection with the database is successful
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+//// checks if connection with the database is successful
+//db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // (optional) only made for logging and
 // bodyParser, parses the request body to be a readable json format
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
+
+
+var nursesController = require('./controllers/nursesController');
+app.use('/api', nursesController);
+
+
+
 
 // this is our get method
 // this method fetches all available data in our database
@@ -47,50 +56,6 @@ router.get("/doctors", (req, res) => {
   });
 });
 
-router.get("/nurses", (req, res) => {
-  Nurse.find((err, nurse) => {
-    return res.json(nurse);
-  });
-});
-
-// GETS A SINGLE USER FROM THE DATABASE
-router.get("/nurses/:id", function(req, res) {
-  const id = { id: req.params.id };
-  Nurse.findOne(id, function(err, nurse) {
-    return res.json(nurse);
-  });
-});
-
-router.put("/nurses/:id", (req, res) => {
-  const id = { id: req.params.id };
-  const update = req.body;
-  Nurse.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
-
-router.post("/nurses", (req, res) => {
-  let nurse = new Nurse();
-  const { id, name, address, mobile, gender } = req.body;
-  nurse.name = name;
-  nurse.id = id;
-  nurse.address = address;
-  nurse.mobile = mobile;
-  nurse.gender = gender;
-  nurse.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
-
-router.delete("/nurses/:id", (req, res) => {
-  const id = { id: req.params.id };
-  Nurse.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
-    return res.json({ success: true });
-  });
-});
 
 // this is our get method
 // this method fetches all available data in our database
