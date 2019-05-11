@@ -41,21 +41,45 @@ router.get("/patients", (req, res) => {
   });
 });
 
-// this is our get method
-// this method fetches all available data in our database
 router.get("/doctors", (req, res) => {
   Doctor.find((err, data) => {
-    //if (err) return res.json({ success: false, error: err });
     return res.json(data);
   });
 });
 
-// this is our get method
-// this method fetches all available data in our database
 router.get("/nurses", (req, res) => {
   Nurse.find((err, nurse) => {
-    //if (err) return res.json({ success: false, error: err });
     return res.json(nurse);
+  });
+});
+
+router.post("/nurses/edit", (req, res) => {
+  const { id, update } = req.body;
+  Data.findOneAndUpdate(id, update, err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+router.post("/nurses", (req, res) => {
+  let nurse = new Nurse();
+  const { id, name, address, mobile, gender } = req.body;
+  nurse.name = name;
+  nurse.id = id;
+  nurse.address = address;
+  nurse.mobile = mobile;
+  nurse.gender = gender;
+  nurse.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+router.delete("/nurses/:id", (req, res) => {
+  const id = { id: req.params.id };
+  Doctor.findOneAndDelete(id, err => {
+    if (err) return res.send(err);
+    return res.json({ success: true });
   });
 });
 
@@ -65,16 +89,6 @@ router.get("/getData", (req, res) => {
   Data.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
-  });
-});
-
-// this is our update method
-// this method overwrites existing data in our database
-router.post("/nurses/edit", (req, res) => {
-  const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
   });
 });
 
@@ -104,28 +118,6 @@ router.post("/doctors", (req, res) => {
   doctor.name = name;
   doctor.id = id;
   doctor.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
-
-router.post("/nurses", (req, res) => {
-  let nurse = new Nurse();
-
-  const { id, name, address, mobile, gender } = req.body;
-
-  // if ((!id && id !== 0) || !name) {
-  //   return res.json({
-  //     success: false,
-  //     error: "INVALID INPUTS"
-  //   });
-  // }
-  nurse.name = name;
-  nurse.id = id;
-  nurse.address = address;
-  nurse.mobile = mobile;
-  nurse.gender = gender;
-  nurse.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
