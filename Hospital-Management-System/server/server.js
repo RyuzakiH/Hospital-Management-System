@@ -55,13 +55,15 @@ router.get("/nurses", (req, res) => {
 
 // GETS A SINGLE USER FROM THE DATABASE
 router.get("/nurses/:id", function(req, res) {
-  Nurse.findById(req.params.id, function(err, nurse) {
+  const id = { id: req.params.id };
+  Nurse.findOne(id, function(err, nurse) {
     return res.json(nurse);
   });
 });
 
 router.put("/nurses/:id", (req, res) => {
-  const { id, update } = req.body;
+  const id = { id: req.params.id };
+  const update = req.body;
   Nurse.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
