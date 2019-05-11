@@ -53,9 +53,16 @@ router.get("/nurses", (req, res) => {
   });
 });
 
-router.post("/nurses/edit", (req, res) => {
+// GETS A SINGLE USER FROM THE DATABASE
+router.get("/nurses/:id", function(req, res) {
+  Nurse.findById(req.params.id, function(err, nurse) {
+    return res.json(nurse);
+  });
+});
+
+router.put("/nurses/:id", (req, res) => {
   const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
+  Nurse.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -77,7 +84,7 @@ router.post("/nurses", (req, res) => {
 
 router.delete("/nurses/:id", (req, res) => {
   const id = { id: req.params.id };
-  Doctor.findOneAndDelete(id, err => {
+  Nurse.findOneAndDelete(id, err => {
     if (err) return res.send(err);
     return res.json({ success: true });
   });
