@@ -1,10 +1,5 @@
-﻿//const mongoose = require("mongoose");
-const express = require("express");
-//var cors = require("cors");
+﻿const express = require("express");
 const bodyParser = require("body-parser");
-//const logger = require("morgan");
-//const Data = require("./models/data");
-//const Doctor = require("./models/doctor");
 const Nurse = require("../models/nurse");
 
 //const API_PORT = 3001;
