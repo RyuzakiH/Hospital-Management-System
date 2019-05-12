@@ -59,7 +59,15 @@ class EditRoom extends Component {
                                 <form onSubmit={this.handleSubmit} className="form-horizontal">
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="name">Name</Label>
+                                            <Label htmlFor="name">Room No.</Label>
+                                        </Col>
+                                        <Col xs="12" md="9">
+                                            <Input type="text" id="id" placeholder="id" required defaultValue={this.state.room.id} />
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row>
+                                        <Col md="3">
+                                            <Label htmlFor="name">Patient Name</Label>
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="text" id="name" placeholder="Name" required defaultValue={this.state.room.name} />
