@@ -10,17 +10,25 @@ function RoomRow(props) {
     const roomLink = `/rooms/${room.id}`
 
     const getBadge = (status) => {
-        return status === 'Active' ? 'success' :
-            status === 'Inactive' ? 'secondary' :
-                status === 'Pending' ? 'warning' :
-                    status === 'Banned' ? 'danger' :
-                        'primary'
+        return status === 'Active'
+        ? 'success' :
+        status === 'Inactive'
+        ? 'secondary' :
+        status === 'Pending'
+        ? 'warning' :
+        status === 'Banned'
+        ? 'danger'
+        : 'primary';
     }
 
     return (
         <tr key={room.id.toString()}>
-            <th scope="row"><Link to={roomLink}>{room.id}</Link></th>
-            <td><Link to={roomLink}>{room.name}</Link></td>
+            <th scope="row">
+            <Link to={roomLink}>{room.id}</Link>
+            </th>
+            <td>
+            <Link to={roomLink}>{room.name}</Link>
+            </td>
 
             <td>
                 <Link to={"/rooms/edit/" + room.id} params={{ room: room }}>
@@ -76,9 +84,12 @@ class Rooms extends Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {this.state.rooms.map((room, index) =>
-                                            <RoomRow key={index} room={room} deleteRoomHandler={this.deleteRoomHandler} />
-                                        )}
+                                        {this.state.rooms.map((room, index) => (
+                                            <RoomRow
+                                             key={index}
+                                             room={room}
+                                             deleteRoomHandler={this.deleteRoomHandler} />
+                                        ))}
                                     </tbody>
                                 </Table>
                             </CardBody>

@@ -17,7 +17,8 @@ class Room extends Component {
         this.getRoomHandler(this.props.match.params.id);
     }
 
-    getRoomHandler = (id) => RoomsApi.getRoom(id, room => this.setState({room: room}));
+    getRoomHandler = (id) =>
+    RoomsApi.getRoom(id, room => this.setState({room: room}));
 
 
     render() {

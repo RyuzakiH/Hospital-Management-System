@@ -24,6 +24,9 @@ app.use(logger("dev"));
 var nursesController = require('./controllers/nursesController');
 app.use('/api', nursesController);
 
+var roomsController = require('./controllers/roomsController');
+app.use('/api', roomsController);
+
 
 
 

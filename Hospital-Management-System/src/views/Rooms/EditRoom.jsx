@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, Col, FormGroup, Label, Input, Row } from 'reactstrap';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  FormGroup,
+  Label,
+  Input,
+  Row
+} from 'reactstrap';
 import RoomsApi from '../../services/RoomsApi';
 
 class EditRoom extends Component {
@@ -20,7 +30,8 @@ class EditRoom extends Component {
 
     editRoomHandler = (room, callback) => RoomsApi.editRoom(room, callback);
 
-    getRoomHandler = (id) => RoomsApi.getRoom(id, room => this.setState({room: room}));
+    getRoomHandler = (id) =>
+    RoomsApi.getRoom(id, room => this.setState({room: room}));
 
     handleSubmit = (event) => {
         event.preventDefault();

@@ -8,6 +8,11 @@ import addNurse from "./views/Nurses/addNurse";
 import nurse from "./views/Nurses/nurse";
 import nurses from "./views/Nurses/nurses";
 import EditNurse from "./views/Nurses/editNurses";
+//import rooms
+import Rooms from './views/Rooms/Rooms';
+import AddRoom from './views/Rooms/AddRoom';
+import EditRoom from './views/Rooms/EditRoom';
+import Room from './views/Rooms/Room';
 
 const Dashboard = React.lazy(() => import("./views/Dashboard"));
 const Users = React.lazy(() => import("./views/Users/Users"));
@@ -63,12 +68,11 @@ const routes = [
   },
   { path: "/nurses", exact: true, name: "Nurses", component: nurses },
   { path: "/nurses/add", exact: true, name: "Add Nurse", component: addNurse },
-  {
-    path: "/nurses/edit/:id",
-    exact: true,
-    name: "Edit Nurse",
-    component: EditNurse
-  }
+  { path: "/nurses/edit/:id", exact: true, name: "Edit Nurse", component: EditNurse },
+  //Room Routes
+  { path: '/rooms', exact: true, name: 'Rooms', component: Rooms },
+  { path: '/rooms/add', exact: true, name: 'Add Room', component: AddRoom },
+  { path: '/rooms/edit/:id', exact: true, name: 'Edit Room', component: EditRoom },
+  { path: '/rooms/:id', exact: true, name: 'Room Details', component: Room },
 ];
-
 export default routes;

@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, Col, FormGroup, Label, Input, Row } from 'reactstrap';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  FormGroup,
+  Label,
+  Input,
+  Row
+} from 'reactstrap';
 import RoomsApi from '../../services/RoomsApi';
 
 class AddRoom extends Component {
