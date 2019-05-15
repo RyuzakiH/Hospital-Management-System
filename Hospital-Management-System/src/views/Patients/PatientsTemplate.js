@@ -14,6 +14,7 @@ const patientsTemplate = [
     { name: 'doctorId', display: 'Doctor ID', type: InputTypes.NUMBER, readOnly: false, required: false },
     { name: 'nurseId', display: 'Nurse ID', type: InputTypes.NUMBER, readOnly: false, required: false },
     { name: 'roomId', display: 'Room ID', type: InputTypes.NUMBER, readOnly: false, required: false },
+
     // { name: 'userName', type: InputTypes.TEXT, readOnly: false, required: true },
     // { name: 'password', type: InputTypes.PASSWORD, readOnly: false, required: true }
 ];

@@ -5,6 +5,8 @@ import patientsTemplate from './PatientsTemplate';
 import PatientsApi from '../../services/PatientsApi';
 import utils from '../../utils';
 import DoctorsApi from '../../services/DoctorsApi';
+import NursesApi from '../../services/NursesApi';
+import RoomsApi from '../../services/RoomsApi';
 
 class AddPatient extends Component {
 
@@ -12,24 +14,34 @@ class AddPatient extends Component {
         super();
 
         this.state = {
-            doctors: []
+            doctors: [],
+            nurses: [],
+            rooms: []
         }
 
         this.updatePatientsHandler = this.updatePatientsHandler.bind(this);
         this.updateDoctorsHandler = this.updateDoctorsHandler.bind(this);
+        this.updateNursesHandler = this.updateNursesHandler.bind(this);
+        this.updateRoomsHandler = this.updateRoomsHandler.bind(this);
         this.addPatientHandler = this.addPatientHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        this.patientsTemplate = utils.selectTemplateObjectsWithNames(patientsTemplate, ['name', 'mobile', 'address', 'gender', 'disease', 'doctorId'/*, 'nurseId', 'roomId'*/])
+        this.patientsTemplate = utils.selectTemplateObjectsWithNames(patientsTemplate, ['name', 'mobile', 'address', 'gender', 'disease', 'doctorId', /*'nurseId', 'roomId'*/])
     }
 
     componentDidMount() {
         document.title = "Add Patient";
         this.updatePatientsHandler();
         this.updateDoctorsHandler();
+        //this.updateNursesHandler();
+        //this.updateRoomsHandler();
     }
 
     updateDoctorsHandler = () => DoctorsApi.getDoctors(doctors => this.setState({ doctors: doctors }));
+
+    updateNursesHandler = () => NursesApi.getNurses(nurses => this.setState({ nurses: nurses }));
+
+    updateRoomsHandler = () => RoomsApi.getRooms(rooms => this.setState({ rooms: rooms }));
 
     updatePatientsHandler = () => PatientsApi.getPatients(patients => this.setState({ patients: patients }));
 
@@ -39,10 +51,16 @@ class AddPatient extends Component {
         event.preventDefault();
 
         var data = utils.parseForm(event.target, this.patientsTemplate);
-        
+
+        //data.doctor = (data.doctorId == -1) ? null : parseInt(data.doctorId);
+
+        console.log(data);
+
         data.doctorId = (data.doctorId == -1) ? null : parseInt(data.doctorId);
-        // data.nurseId = (data.nurseId == -1) ? null : parseInt(data.nurseId);
-        // data.roomId = (data.roomId == -1) ? null : parseInt(data.roomId);
+        data.nurseId = (data.nurseId == -1) ? null : parseInt(data.nurseId);
+        data.roomId = (data.roomId == -1) ? null : parseInt(data.roomId);
+
+        console.log(data);
 
         this.addPatientHandler(data);
         this.props.history.push('/patients');
@@ -64,7 +82,7 @@ class AddPatient extends Component {
                                             <Label htmlFor="name">Name</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="name"  name="name" required placeholder="Name" />
+                                            <Input type="text" id="name" name="name" required placeholder="Name" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -106,14 +124,14 @@ class AddPatient extends Component {
                                             <Input type="text" id="disease" placeholder="Text" />
                                         </Col>
                                     </FormGroup>
-                                    
+
                                     <FormGroup row>
                                         <Col md="3">
                                             <Label htmlFor="select">Doctor</Label>
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="select" id="doctorId">
-                                                <option value="-1">Select Doctor</option>                                            
+                                                <option value="-1">Select Doctor</option>
                                                 {
                                                     this.state.doctors.map(doctor =>
                                                         <option key={'doctor_' + doctor.id} value={doctor.id}>{doctor.name}</option>
@@ -122,14 +140,14 @@ class AddPatient extends Component {
                                             </Input>
                                         </Col>
                                     </FormGroup>
-                                    
-                                    {/* <FormGroup row>
+
+                                    {/*<FormGroup row>
                                         <Col md="3">
                                             <Label htmlFor="select">Nurse</Label>
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="select" id="nurseId">
-                                                <option value="-1">Select Nurse</option>                                            
+                                                <option value="-1">Select Nurse</option>
                                                 {
                                                     this.state.nurses.map(nurse =>
                                                         <option key={'nurse_' + nurse.id} value={nurse.id}>{nurse.name}</option>
@@ -145,7 +163,7 @@ class AddPatient extends Component {
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="select" id="roomId">
-                                                <option value="-1">Select Room</option>                                            
+                                                <option value="-1">Select Room</option>
                                                 {
                                                     this.state.rooms.map(room =>
                                                         <option key={'room_' + room.id} value={room.id}>{room.name}</option>
@@ -153,7 +171,7 @@ class AddPatient extends Component {
                                                 }
                                             </Input>
                                         </Col>
-                                    </FormGroup> */}
+                                    </FormGroup>*/}
 
                                     <Button type="submit" color="primary">Submit</Button>
                                 </form>

@@ -30,7 +30,7 @@ class addNurse extends Component {
     event.preventDefault();
 
     var data = {
-      id: event.target.elements["id"].value,
+      //id: event.target.elements["id"].value,
       name: event.target.elements["name"].value,
       address: event.target.elements["address"].value,
       mobile: event.target.elements["mobile"].value,
@@ -51,7 +51,7 @@ class addNurse extends Component {
               </CardHeader>
               <CardBody>
                 <form onSubmit={this.handleSubmit} className="form-horizontal">
-                  <FormGroup row>
+                  {/*<FormGroup row>
                     <Col md="3">
                       <Label htmlFor="id">ID</Label>
                     </Col>
@@ -64,7 +64,7 @@ class addNurse extends Component {
                         placeholder="id"
                       />
                     </Col>
-                  </FormGroup>
+                  </FormGroup>*/}
 
                   <FormGroup row>
                     <Col md="3">

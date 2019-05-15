@@ -6,6 +6,7 @@ import PatientsApi from '../../services/PatientsApi';
 import utils from '../../utils';
 import DoctorsApi from '../../services/DoctorsApi';
 import NursesApi from '../../services/NursesApi';
+import RoomsApi from '../../services/RoomsApi';
 
 class EditPatient extends Component {
 
@@ -14,6 +15,7 @@ class EditPatient extends Component {
 
         this.state = { patient: {}, doctors: [], nurses: [], rooms: [] };
 
+        this.updateRoomsHandler = this.updateRoomsHandler.bind(this);
         this.updateNursesHandler = this.updateNursesHandler.bind(this);
         this.updateDoctorsHandler = this.updateDoctorsHandler.bind(this);
         this.getPatientHandler = this.getPatientHandler.bind(this);
@@ -29,9 +31,12 @@ class EditPatient extends Component {
         this.getPatientHandler(this.props.match.params.id);
         this.updateDoctorsHandler();
         this.updateNursesHandler();
+        this.updateRoomsHandler();
     }
 
     updateNursesHandler = () => NursesApi.getNurses(nurses => this.setState({ nurses: nurses }));
+
+    updateRoomsHandler = () => RoomsApi.getRooms(rooms => this.setState({ rooms: rooms }));
 
     updateDoctorsHandler = () => DoctorsApi.getDoctors(doctors => this.setState({ doctors: doctors }));
 

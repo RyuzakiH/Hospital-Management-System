@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// this will be our data base's doctor structure 
 const doctorSchema = new Schema(
     {
-        id: Number,
+        id: { type: Number, default: 0, required: true },
         name: String,
         phone: String,
         spec: String

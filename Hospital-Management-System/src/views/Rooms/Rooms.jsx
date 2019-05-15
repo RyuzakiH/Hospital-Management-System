@@ -27,7 +27,7 @@ function RoomRow(props) {
             <Link to={roomLink}>{room.id}</Link>
             </th>
             <td>
-            <Link to={roomLink}>{room.name}</Link>
+            <Link to={roomLink}>{room.number}</Link>
             </td>
 
             <td>
@@ -78,7 +78,7 @@ class Rooms extends Component {
                                     <thead>
                                         <tr>
                                             <th scope="col">Room No.</th>
-                                            <th scope="col">Patient Name</th>
+                                            <th scope="col">Number</th>
                                             <th scope="col">Edit</th>
                                             <th scope="col">Delete</th>
                                         </tr>

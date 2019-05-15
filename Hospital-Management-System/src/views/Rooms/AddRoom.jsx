@@ -31,8 +31,8 @@ class AddRoom extends Component {
         event.preventDefault();
 
         var data = {
-            id: event.target.elements["id"].value,
-            name: event.target.elements["name"].value
+            //id: event.target.elements["id"].value,
+            number: event.target.elements["number"].value
         };
 
         this.addRoomHandler(data, () => this.props.history.push('/rooms'));
@@ -49,20 +49,20 @@ class AddRoom extends Component {
                             </CardHeader>
                             <CardBody>
                                 <form onSubmit={this.handleSubmit} className="form-horizontal">
-                                    <FormGroup row>
+                                    {/*<FormGroup row>
                                         <Col md="3">
                                             <Label htmlFor="name">Room Number</Label>
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="text" id="id"  name="id" required placeholder="room number" />
                                         </Col>
-                                    </FormGroup>
+                                    </FormGroup>*/}
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="name">Patient Name</Label>
+                                            <Label htmlFor="number">Number</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="name"  name="name" required placeholder="name" />
+                                            <Input type="text" id="number" name="number" required placeholder="number" />
                                         </Col>
                                     </FormGroup>
 

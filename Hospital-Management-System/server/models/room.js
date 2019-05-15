@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const RoomSchema = new Schema(
   {
     id: Number,
-    name: String
+    number: Number
   }
 );
 

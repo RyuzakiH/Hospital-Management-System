@@ -18,7 +18,7 @@ class Room extends Component {
     }
 
     getRoomHandler = (id) =>
-    RoomsApi.getRoom(id, room => this.setState({room: room}));
+        RoomsApi.getRoom(id, room => this.setState({room: room}));
 
 
     render() {
@@ -36,12 +36,12 @@ class Room extends Component {
                                     <tbody>
 
                                         <tr>
-                                            <td>{`ID:`}</td>
+                                            <td>{`Id:`}</td>
                                             <td><strong>{this.state.room.id}</strong></td>
                                         </tr>
                                         <tr>
-                                            <td>{`Name:`}</td>
-                                            <td><strong>{this.state.room.name}</strong></td>
+                                            <td>{`Number:`}</td>
+                                            <td><strong>{this.state.room.number}</strong></td>
                                         </tr>
                                         {/* {
                                             patientsTemplate.map(prop =>

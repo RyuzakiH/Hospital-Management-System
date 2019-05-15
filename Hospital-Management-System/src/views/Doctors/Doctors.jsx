@@ -6,6 +6,9 @@ import DeleteModal from './DeleteModal';
 import DoctorsApi from '../../services/DoctorsApi';
 
 function DoctorRow(props) {
+
+    console.log(props);
+
     const doctor = props.doctor
     const doctorLink = `/doctors/${doctor.id}`
 

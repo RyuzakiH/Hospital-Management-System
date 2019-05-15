@@ -38,7 +38,7 @@ class EditRoom extends Component {
 
         var data = {
             id: this.state.room.id,
-            name: event.target.elements['name'].value
+            number: event.target.elements['number'].value
         };
 
         console.log(data)
@@ -57,20 +57,20 @@ class EditRoom extends Component {
                             </CardHeader>
                             <CardBody>
                                 <form onSubmit={this.handleSubmit} className="form-horizontal">
-                                    <FormGroup row>
+                                    {/*<FormGroup row>
                                         <Col md="3">
                                             <Label htmlFor="name">Room No.</Label>
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="text" id="id" placeholder="id" required defaultValue={this.state.room.id} />
                                         </Col>
-                                    </FormGroup>
+                                    </FormGroup>*/}
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="name">Patient Name</Label>
+                                            <Label htmlFor="name">Number</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="name" placeholder="Name" required defaultValue={this.state.room.name} />
+                                            <Input type="text" id="number" placeholder="Number" required defaultValue={this.state.room.number} />
                                         </Col>
                                     </FormGroup>
                                     <Button type="submit" color="primary">Submit</Button>
